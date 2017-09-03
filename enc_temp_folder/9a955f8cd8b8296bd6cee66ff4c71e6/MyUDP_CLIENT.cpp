@@ -11,7 +11,6 @@ void MyUDP_CLIENT::processDatagram(QByteArray datagram)
 	qDebug() << datagram << endl;
 }
 
-
 MyUDP_CLIENT::MyUDP_CLIENT(QObject *parent)
 	: QObject(parent),udp_client(nullptr),udp_data(nullptr)
 {
