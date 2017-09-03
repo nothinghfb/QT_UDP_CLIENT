@@ -46,7 +46,7 @@ void MyUDP_SERVER::timerEvent(QTimerEvent *event)
 		char* dataPtr = data.data();
 		qDebug() << endl << QTime::currentTime() << "QByteArray : " << data << endl;
 		qDebug() << QTime::currentTime() << "QString    : " << str << endl;
-		QHostAddress host(QHostAddress::Broadcast);
+		QHostAddress host(QHostAddress::LocalHost);
 		quint16 port = 12345;
 		quint64 rt = this->udp_server->writeDatagram(data,host,port);
 		qDebug() << QTime::currentTime() << "udp_server : " << rt << endl;
