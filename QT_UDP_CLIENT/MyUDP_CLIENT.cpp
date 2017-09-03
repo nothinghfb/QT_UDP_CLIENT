@@ -2,7 +2,7 @@
 
 void MyUDP_CLIENT::initUdp()
 {
-	this->udp_client->bind(QHostAddress::LocalHost,7755);
+	this->udp_client->bind(12345,QUdpSocket::ShareAddress);
 	this->connect(this->udp_client, SIGNAL(readyRead()), this, SLOT(readPendingDatagrams()));
 }
 
@@ -33,7 +33,9 @@ void MyUDP_CLIENT::readPendingDatagrams()
 		datagram.resize(this->udp_client->pendingDatagramSize());
 		QHostAddress sender;
 		quint16 port;
-		this->udp_client->readDatagram(datagram.data(), datagram.size(), &sender, &port);
-		qDebug() << QDateTime::currentDateTime() << "udp_client : " << datagram << " from " << sender << " port : " << port << endl;
+		quint64 rt = this->udp_client->readDatagram(datagram.data(), datagram.size(), &sender, &port);
+		qDebug() << endl << QTime::currentTime() << "udp_client" << " sender : " << sender.toString() << " port : " << port << "Message: " << datagram << endl;
+		
+		qDebug() << QTime::currentTime() << "udp_server : " << rt << endl;
 	}
 }

@@ -33,6 +33,7 @@ void MyUDP_SERVER::timerEvent(QTimerEvent *event)
 // 		dst.b = number % 256;
 
 		MyStruct dst;
+		memset((void*)&dst, 48, sizeof(MyStruct));
 		strcpy_s(dst.a, "I Love You");
 		strcpy_s(dst.b, "You Love Me");
 		unsigned short int * dstt = (unsigned short int*)&dst;
@@ -43,12 +44,13 @@ void MyUDP_SERVER::timerEvent(QTimerEvent *event)
 		data.append(QByteArray(dst.b));
 		
 		char* dataPtr = data.data();
-		qDebug() << QDateTime::currentDateTime() << "QByteArray : " << data << endl;
-		qDebug() << QDateTime::currentDateTime() << "QString    : " << str << endl;
+		qDebug() << endl << QTime::currentTime() << "QByteArray : " << data << endl;
+		qDebug() << QTime::currentTime() << "QString    : " << str << endl;
 		QHostAddress host(QHostAddress::LocalHost);
-		quint16 port = 7755;
+		quint16 port = 12345;
 		quint64 rt = this->udp_server->writeDatagram(data,host,port);
+		qDebug() << QTime::currentTime() << "udp_server : " << rt << endl;
 		rt = this->udp_server->writeDatagram((char*)dstt, host, port);
-		qDebug() << QDateTime::currentDateTime() << "udp_server : " << rt << endl;
+		qDebug() << QTime::currentTime() << "udp_server : " << rt << endl;
 	}
 }
