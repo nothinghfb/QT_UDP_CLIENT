@@ -48,7 +48,7 @@ void MyUDP_SERVER::timerEvent(QTimerEvent *event)
 		QHostAddress host(QHostAddress::LocalHost);
 		quint16 port = 7755;
 		quint64 rt = this->udp_server->writeDatagram(data,host,port);
-		rt = this->udp_server->writeDatagram(dstt, host, port);
+		rt = this->udp_server->writeDatagram((char*)dstt, host, port);
 		qDebug() << QDateTime::currentDateTime() << "udp_server : " << rt << endl;
 	}
 }
