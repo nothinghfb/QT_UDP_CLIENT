@@ -8,7 +8,7 @@ void MyUDP_SERVER::initUdp()
 MyUDP_SERVER::MyUDP_SERVER(QObject *parent)
 	: QObject(parent)
 {
-	timerId_sendMsg = startTimer(100);
+	timerId_sendMsg = startTimer(2000);
 	udp_server = new QUdpSocket;
 }
 
